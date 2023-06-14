@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"net/http/httputil"
+)
 
-func main() {
-	fmt.Printf("Hello World! \n")
+type simpleServer struct {
+	addr string
+	proxy *httputil.ReverseProxy
 }
