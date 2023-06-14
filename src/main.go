@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http/httputil"
 	"net/url"
 )
@@ -21,5 +22,7 @@ func newSimpleServer(addr string) *simpleServer {
 }
 
 func handleErr(err error){
-	
+	if err != nil {
+		fmt.Printf("error: %v\n", err)
+	}
 }
