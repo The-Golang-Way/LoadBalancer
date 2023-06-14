@@ -11,10 +11,15 @@ type simpleServer struct {
 }
 
 func newSimpleServer(addr string) *simpleServer {
-	serverUrl, bruhWhatDoIDoHere := url.Parse(addr)
+	serverUrl, err := url.Parse(addr)
+	handleErr(err)
 
 	return &simpleServer{
 		addr: addr,
 		proxy: httputil.NewSingleHostReverseProxy(serverUrl),
 	}
+}
+
+func handleErr(err error){
+	
 }
