@@ -45,13 +45,14 @@ func newLoadBalancer(port string, servers []Server) *LoadBalancer{
 	}
 }
 
-// similar to catch-and-throw assertations but super duper ghetto
+// similar to catch-and-throw assertations in java but the go equivalent that is super duper ghetto imo. by the way, nil is like null but it cannot be assigned to a variable.
 func handleErr(err error){
 	if err != nil {
 		fmt.Printf("error: %v\n", err)
 	}
 }
 
+// http package comming in clutch lmao
 func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){}
 
 // main function that starts everything up
@@ -66,4 +67,5 @@ func main() {
 		lb.serverProxy(rw, req)
 	}
 	http.HandleFunc("/", handleRedirect)
+	http.ListenAndServe(":" + lb.port, nil)
 }
