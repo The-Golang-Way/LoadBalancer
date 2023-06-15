@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-type simpleServer struct {
+type SimpleServer struct {
 	addr string
 	proxy *httputil.ReverseProxy
 }
@@ -19,6 +19,12 @@ func newSimpleServer(addr string) *simpleServer {
 		addr: addr,
 		proxy: httputil.NewSingleHostReverseProxy(serverUrl),
 	}
+}
+
+type LoadBalancer struct {
+	port 			string
+	roundRobinCount int
+	servers			[]Server
 }
 
 func handleErr(err error){
