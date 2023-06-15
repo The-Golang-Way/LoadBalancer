@@ -34,6 +34,14 @@ type LoadBalancer struct {
 	servers 		[]Server
 }
 
+func newLoadBalancer(port string, servers []Server) *LoadBalancer{
+	return &LoadBalancer{
+		port: 			 port,
+		roundRobinCount: 0,
+		servers:		 servers,
+	}
+}
+
 func handleErr(err error){
 	if err != nil {
 		fmt.Printf("error: %v\n", err)
