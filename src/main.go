@@ -52,7 +52,7 @@ func handleErr(err error){
 	}
 }
 
-func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, r *http.Request){}
+func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){}
 
 // main function that starts everything up
 func main() {
@@ -62,7 +62,8 @@ func main() {
 		newSimpleServer("https://github.com/huaanth"),
 	}
 	lb := newLoadBalancer("8000", servers)
-	handleRedirect := func(rw http.ResponseWriter, r *http.Request){
-		lb.
+	handleRedirect := func(rw http.ResponseWriter, req *http.Request){
+		lb.serverProxy(rw, req)
 	}
+	http.HandleFunc("/", handleRedirect)
 }
