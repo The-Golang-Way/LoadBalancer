@@ -61,6 +61,12 @@ func (s *SimpleServer) Serve(rw http.ResponseWriter, req *http.Request){
 }
 
 func (lb *LoadBalancer) goNext() Server {
+	server := lb.servers[lb.roundRobinCount % len(lb.servers)]
+	for !server.isAlive(){
+		lb.roundRobinCount++
+		server = lb.servers[lb.roundRobinCount % len(lb.servers)]
+	}
+	lb.roundRobinCount++
 }
 
 // http package comming in clutch lmao
