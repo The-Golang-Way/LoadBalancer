@@ -52,9 +52,13 @@ func handleErr(err error){
 	}
 }
 
-func Address(s *SimpleServer) string {return s.addr}
+func (s *SimpleServer) Address() string {return s.addr}
 
-func isAlive() bool {return true}
+func (s *SimpleServer) isAlive() bool {return true}
+
+func (s *SimpleServer) Serve(rw http.ResponseWriter, req *http.Request){
+	s.proxy.ServeHTTP(rw, req)
+}
 
 // http package comming in clutch lmao
 func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){}
