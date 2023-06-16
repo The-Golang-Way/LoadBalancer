@@ -60,8 +60,14 @@ func (s *SimpleServer) Serve(rw http.ResponseWriter, req *http.Request){
 	s.proxy.ServeHTTP(rw, req)
 }
 
+func (lb *LoadBalancer) goNext() Server {
+}
+
 // http package comming in clutch lmao
-func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){}
+func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){
+	mainServer := lb.goNext()
+	mainServer.Serve(rw, req)
+}
 
 // main function that starts everything up
 func main() {
