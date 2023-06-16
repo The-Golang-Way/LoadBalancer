@@ -54,6 +54,8 @@ func handleErr(err error){
 
 func Address(s *SimpleServer) string {return s.addr}
 
+func isAlive() bool {return true}
+
 // http package comming in clutch lmao
 func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){}
 
