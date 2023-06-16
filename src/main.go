@@ -67,6 +67,7 @@ func (lb *LoadBalancer) goNext() Server {
 		server = lb.servers[lb.roundRobinCount % len(lb.servers)]
 	}
 	lb.roundRobinCount++
+	return server
 }
 
 // http package comming in clutch lmao
