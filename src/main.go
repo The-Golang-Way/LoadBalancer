@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -48,7 +47,7 @@ func newLoadBalancer(port string, servers []Server) *LoadBalancer{
 // similar to catch-and-throw assertations in java but the go equivalent that is super duper ghetto imo. by the way, nil is like null but it cannot be assigned to a variable.
 func handleErr(err error){
 	if err != nil {
-		fmt.Printf("error: %v\n", err)
+		panic(err)
 	}
 }
 
