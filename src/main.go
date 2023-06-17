@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -72,6 +73,7 @@ func (lb *LoadBalancer) goNext() Server {
 // http package comming in clutch lmao
 func (lb *LoadBalancer) serverProxy(rw http.ResponseWriter, req *http.Request){
 	mainServer := lb.goNext()
+	fmt.Printf("forwarding request to address %q\n", mainServer.Address())
 	mainServer.Serve(rw, req)
 }
 
@@ -87,5 +89,8 @@ func main() {
 		lb.serverProxy(rw, req)
 	}
 	http.HandleFunc("/", handleRedirect)
+
+	fmt.Printf("serving requests at 'localhost:%s'\n", lb.port)
+
 	http.ListenAndServe(":" + lb.port, nil)
 }
