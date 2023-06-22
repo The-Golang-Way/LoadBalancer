@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 )
 
 type Server interface{
@@ -21,7 +22,10 @@ type SimpleServer struct {
 // think of this as the constructor class from java 
 func newSimpleServer(addr string) *SimpleServer {
 	serverUrl, err := url.Parse(addr)
-	handleErr(err)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 	return &SimpleServer{
 		addr: addr,
@@ -42,13 +46,6 @@ func newLoadBalancer(port string, servers []Server) *LoadBalancer{
 		port: 			 port,
 		roundRobinCount: 0,
 		servers:		 servers,
-	}
-}
-
-// similar to catch-and-throw assertations in java but the go equivalent that is super duper ghetto imo. by the way, nil is like null but it cannot be assigned to a variable.
-func handleErr(err error){
-	if err != nil {
-		panic(err)
 	}
 }
 
