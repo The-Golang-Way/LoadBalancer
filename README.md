@@ -1,2 +1,2 @@
-# ghetto-nginx-loadbalancer-rewrite
-recreating a super simple version of NGINX's loadbalancer
+# loadbalancer
+Wrote a load balancer that follows the round-robin algorithm to distribute traffic and client requests across servers
