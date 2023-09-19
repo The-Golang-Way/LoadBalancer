@@ -7,6 +7,7 @@ In the main function of the program, add your GitHub account. Look at the exampl
 2. make changes in the fork
    - could be done on Github itself
    - could be done on your machine
+   - write an appropriate commit message! Click [here](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/)
 4. send a pull request
 
 ### Need help? ###
