@@ -1,3 +1,3 @@
-module github.com/Yehdar/ghetto-nginx-loadbalancer-rewrite/v2
+module github.com/The-Golang-Way/loadbalancer/
 
 go 1.20
