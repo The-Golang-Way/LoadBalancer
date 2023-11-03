@@ -83,7 +83,7 @@ func main() {
 		newSimpleServer("https://github.com/itzray116R"),
 		newSimpleServer("https://github.com/cpoing"),
 	}
-	lb := newLoadBalancer("8000", servers)
+	lb := newLoadBalancer(localhost, servers)
 	handleRedirect := func(rw http.ResponseWriter, req *http.Request){
 		lb.serverProxy(rw, req)
 	}
